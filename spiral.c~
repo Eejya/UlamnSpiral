@@ -1,0 +1,87 @@
+#include<stdio.h>
+void storeNum(int);
+int printSpiral();
+int count=1;
+int n,x,y;
+int arr[50][50];
+int main(void)
+{
+    printf("Enter the spiral number:");
+    scanf("%d",&n);
+    x=0;
+    y=0;
+    storeNum(n);
+    printSpiral();
+    return 0;
+}
+void storeNum(int m)
+{
+    if(m==1)
+    {   
+        arr[x][y]=count;
+    }
+    else if(m==0)
+    {
+    return;
+    }
+    else
+    {
+        int i;
+        for(i=y;i<n-y;i++)
+        {
+            arr[x][i]=count;
+            count++;
+        }  
+        count=count-1;  
+        for(i=x;i<n-x;i++)
+        {
+        
+            arr[i][n-1-y]=count;
+            count++;
+        }
+        count=count-1;
+        for(i=n-1-y;i>y-1;i--)
+        {
+            arr[n-1-x][i]=count;
+            count++;
+        }
+        count=count-1;
+        for(i=n-1-x;i>x;i--)
+        {
+            arr[i][y]=count;
+            count++;
+        }
+        
+        x++;
+        y++;
+
+        printf("count value is %d\n",count);
+        m=m-2;
+        storeNum(m);
+    }
+}
+int printSpiral()
+{
+    int i,j;
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            if(arr[i][j]!=0)
+            {
+                if(arr[i][j]<10)
+                {
+                printf("%d      ",arr[i][j]);
+                }
+                else
+                {
+                printf("%d     ",arr[i][j]);
+                }
+            }
+        
+        }
+    printf("\n");
+    }
+
+
+}
